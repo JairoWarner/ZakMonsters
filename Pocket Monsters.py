@@ -1,11 +1,94 @@
 import random
+from tkinter.font import names
 
-#atacks
-# class Bite:
-#     def init(self,name,dmg):
-#         base_damage = 7
-#         if Bite in class with element:
-#             chance to "fire", "water", "grass" + " bite"
+
+# atacks
+# attacks
+def Bite():
+    return {"name": "Bite", "base_damage": 7}
+
+def Roll_out():
+    return {"name": "Roll_out", "base_damage": 7}
+
+def Erupt():
+    return {"name": "Erupt", "base_damage": 7}
+
+def Photosyn():
+    return {"name": "Photosyn", "base_damage": 7}
+
+def Squirt():
+    return {"name": "Squirt", "base_damage": 7}
+
+def Blast():
+    return {"name": "Blast", "base_damage": 7}
+
+def Vine_Whip():
+    return {"name": "Vine_Whip", "base_damage": 7}
+
+def Inferno_seed():
+    return {"name": "Inferno_seed", "base_damage": 7}
+
+def Spore():
+    return {"name": "Spore", "base_damage": 7}
+
+def Bubble_mine_field():
+    return {"name": "Bubble_mine_field", "base_damage": 7}
+
+def Heat_Up():
+    return {"name": "Heat_Up", "base_damage": 7}
+
+def Poison_Plant():
+    return {"name": "Poison_Plant", "base_damage": 7}
+
+def Grass_bomb():
+    return {"name": "Grass_bomb", "base_damage": 7}
+
+def Big_bubble():
+    return {"name": "Big_bubble", "base_damage": 7}
+
+def Vlam_in_de_pan():
+    return {"name": "Vlam_in_de_pan", "base_damage": 7}
+
+def Tackle():
+    return {"name": "Tackle", "base_damage": 7}
+
+def Gwalk():
+    return {"name": "Gwalk", "base_damage": 7}
+
+def Sing():
+    return {"name": "Sing", "base_damage": 7}
+
+def Tail_Whip():
+    return {"name": "Tail_Whip", "base_damage": 7}
+
+turn = False
+def Battle_loop(playermns,enemymnst,turn,x_accuracy):
+
+    battle_hp_player = playermns.HP
+    battle_hp_enemy = enemymnst.HP
+
+    while playermns.HP> 0 and enemymnst.hp>0:
+
+        while turn == True:
+            action = input(f"Please choose an attack.\n1: Bite\n2: X\n3: Y\n4: Z\n: ")
+            if action.isdigit():
+                turn = False
+                act_choice = int(action)
+                print(f"YOU CHOSE ATTACK {act_choice}")
+                Hit_chance = random.randrange(0,100)
+                if Hit_chance <= x_accuracy:
+                    battle_hp_enemy =- playermns.attacks[act_choice]
+                    print(battle_hp_enemy)
+                else:
+                    print("miss")
+
+
+
+            else: print("Please only enter a number")
+
+
+        print("loop gaat door")
+        turn == False
 
 #stats
 # def Stats(self):
@@ -28,14 +111,14 @@ class Hert:
         self.PH_DEF = 3
         self.EM_DEF = 5
         self.SPD = 6
-    
-    def Bite(self, PH_ATTK):
-        Monsters[enemynmr]("X",2)
-        
         return
 
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
 
-class Hamro:
+    def Attacks(self):
+        return
+
+class Hambo:
 
     def __init__(self,name,level):
         self.name = name
@@ -71,17 +154,17 @@ class Cucombo:
         self.EM_DEF = 5
         self.SPD = 6
 
-# class Maurion:
+class Maurion:
 
-#     def __init__(self,name,level):
-#         self.name = name
-#         self.level = level
-#         self.HP = 30
-#         self.PH_ATTK = 6
-#         self.EM_ATTK = 3
-#         self.PH_DEF = 3
-#         self.EM_DEF = 5
-#         self.SPD = 6
+    def __init__(self,name,level):
+        self.name = name
+        self.level = level
+        self.HP = 30
+        self.PH_ATTK = 6
+        self.EM_ATTK = 3
+        self.PH_DEF = 3
+        self.EM_DEF = 5
+        self.SPD = 6
 
 class Ghopper:
 
@@ -152,7 +235,7 @@ def openingmsg ():
    
 Monsters = {
     1 : Hert,
-    2 : Hamro,
+    2 : Hambo,
     3 : Cucombo,
     4 : Cannabud,
     5 : Maurion,
@@ -163,19 +246,26 @@ Monsters = {
 x=""
 Monster_choice = ""
 Monster_name = ""
-while x != "Quit":
-   while Monster_choice == "":
+First_fight = False
+
+for _ in range(1):
+    while Monster_choice == "":
         openingmsg()
-        #hier kan een while loop om te checken of er een int word meegegeven
-        Monster_choice = int(input("Please enter the number op monster you would like te receive.\n: "))
-        Monster_name = input(f"hm {Monsters[Monster_choice]}, huh? not what i excpected. but a good choice non the less! what would you like to name your new friend?\n:")
+        Monster_choice = int(input("Please enter the number of monster you would like te receive.\n: "))
+        Monster_name = input(f"hm {Monsters[Monster_choice]}, huh? Not what I expected. But a good choice nonetheless! What would you like to name your new friend?\n:")
 
-   playermns = Monsters[Monster_choice](Monster_name,Monster_choice)
-   enemynmr = random.randrange(1,7)
-   enemymnst = Monsters[enemynmr]("X",2)
-   print(f"Now its time to have your first fight! we have chocen a random monster for you to battle. your opponent will be {enemymnst}!")
-   
+        playermns = Monsters[Monster_choice](Monster_name, Monster_choice)
+        enemynmr = random.randrange(1, 7)
+        enemymnst = Monsters[enemynmr]("X", 2)
+        attack_names = ", ".join([atk["name"] for atk in playermns.attacks])
+        test = Hert.attacks
 
+
+    print(f"Now it’s time to have your first fight! We have chosen a random monster for you to battle. "
+          f"Your opponent will be {enemymnst}!")
+
+    print(f"What will be youre first atack?")
+    input(f"choose attack:\n{attack_names}")
 
 
 
