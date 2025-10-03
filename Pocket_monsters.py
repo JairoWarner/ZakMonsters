@@ -1,11 +1,10 @@
 import random
- 
- 
+
+
 # atacks
 # attacks
 def Bite():
-    return 30
-    # return {"name": "Bite", "base_damage": 7}
+    return {"name": "Bite", "base_damage": 7}
  
 def Roll_out():
     return {"name": "Roll_out", "base_damage": 7}
@@ -62,40 +61,46 @@ def Tail_Whip():
     return {"name": "Tail_Whip", "base_damage": 7}
  
 turn = False
-def Battle_loop(playermns,enemymnst,turn,x_accuracy):
- 
+import random
+
+
+def Battle_loop(playermns, enemymnst, turn, x_accuracy):
     battle_hp_player = playermns.HP
     battle_hp_enemy = enemymnst.HP
- 
-    while battle_hp_player> 0 and battle_hp_enemy>0:
- 
-        while turn == True and battle_hp_player> 0 and battle_hp_enemy>0:
- 
-            action= input(f"Choose your attack: *SCHRIJF 0* ")
+
+    while battle_hp_player > 0 and battle_hp_enemy > 0:
+        if turn:
+            action = input(f"Choose your attack: *SCHRIJF 0* ")
             if action.isdigit():
-                # turn = False
                 act_choice = int(action)
                 print(f"YOU CHOSE ATTACK {act_choice}")
-                Hit_chance = random.randrange(0,100)
-                print(battle_hp_enemy)
-                # if Hit_chance <= x_accuracy:
-                #     battle_hp_enemy =- playermns.attacks[act_choice]
-                #     print(battle_hp_enemy)
-                # else:
-                #     print("miss")
-                battle_hp_enemy = battle_hp_enemy - playermns.attacks[act_choice]
-               
-                print(battle_hp_enemy)
- 
- 
- 
- 
-            else: print("Please only enter a number")
- 
- 
-        print("loop gaat door")
-        turn == False
- 
+                print(f"Enemy HP before attack: {battle_hp_enemy}")
+
+                battle_hp_enemy -= playermns.attacks[act_choice]["base_damage"]
+                print(f"Enemy HP after attack: {battle_hp_enemy}")
+            else:
+                print("Please only enter a number")
+
+            turn = False
+
+        else:
+            enemy_attack = random.choice(enemymnst.attacks)
+            damage = enemy_attack["base_damage"]
+
+            print(f"Enemy uses {enemy_attack['name']} and deals {damage} damage!")
+            battle_hp_player -= damage
+
+            print(f"Your HP after enemy attack: {battle_hp_player}")
+
+            turn = True
+
+
+    if battle_hp_player <= 0:
+        print("You lost the battle!")
+    elif battle_hp_enemy <= 0:
+        print("You won the battle!")
+
+
 #stats
 # def Stats(self):
 #     HP = 25 + self.level
@@ -107,7 +112,6 @@ def Battle_loop(playermns,enemymnst,turn,x_accuracy):
  
 #monsters
 class Hert:
- 
     def __init__(self,name,level):
         self.name = name
         self.level = level
@@ -117,15 +121,14 @@ class Hert:
         self.PH_DEF = 3
         self.EM_DEF = 5
         self.SPD = 6
-        return
- 
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
     attacks = [Bite(), Photosyn(), Tackle(), Spore()]
- 
-    # def Attacks(self):
-    #     return
- 
+
+
 class Hambo:
- 
     def __init__(self,name,level):
         self.name = name
         self.level = level
@@ -135,9 +138,14 @@ class Hambo:
         self.PH_DEF = 3
         self.EM_DEF = 5
         self.SPD = 6
- 
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
+
 class Cannabud:
- 
     def __init__(self,name,level):
         self.name = name
         self.level = level
@@ -147,9 +155,13 @@ class Cannabud:
         self.PH_DEF = 3
         self.EM_DEF = 5
         self.SPD = 6
- 
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
 class Cucombo:
- 
     def __init__(self,name,level):
         self.name = name
         self.level = level
@@ -159,33 +171,14 @@ class Cucombo:
         self.PH_DEF = 3
         self.EM_DEF = 5
         self.SPD = 6
- 
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
+
 class Maurion:
- 
-    def __init__(self,name,level):
-        self.name = name
-        self.level = level
-        self.HP = 30
-        self.PH_ATTK = 6
-        self.EM_ATTK = 3
-        self.PH_DEF = 3
-        self.EM_DEF = 5
-        self.SPD = 6
- 
-class Ghopper:
- 
-    def __init__(self,name,level):
-        self.name = name
-        self.level = level
-        self.HP = 30
-        self.PH_ATTK = 6
-        self.EM_ATTK = 3
-        self.PH_DEF = 5
-        self.EM_DEF = 2
-        self.SPD = 8
- 
-class Maurion:
- 
     def __init__(self,name,level):
         self.name = name
         self.level = level
@@ -195,9 +188,31 @@ class Maurion:
         self.PH_DEF = 5
         self.EM_DEF = 4
         self.SPD = 4
- 
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
+
+class Ghopper:
+    def __init__(self,name,level):
+        self.name = name
+        self.level = level
+        self.HP = 30
+        self.PH_ATTK = 6
+        self.EM_ATTK = 3
+        self.PH_DEF = 5
+        self.EM_DEF = 2
+        self.SPD = 8
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
+
 class Mirmina:
- 
     def __init__(self,name,level):
         self.name = name
         self.level = level
@@ -207,6 +222,12 @@ class Mirmina:
         self.PH_DEF = 3
         self.EM_DEF = 5
         self.SPD = 7
+
+    def __str__(self):
+        return f"{self.name} the {self.__class__.__name__} (Lvl {self.level})"
+
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
  
 # class Enemy:
  
@@ -234,9 +255,9 @@ def Enemy():
 # print(f"{HP}\n{PH_ATTK}\n{EM_ATTK}\n{PH_ATTK}\n{PH_DEF}\n{EM_ATTK}\n{EM_DEF}\n{SPD}")
 def openingmsg ():
     print(f"\nHello! Welcome to the world of Pocket-Monsters™!\nWe are very excited to welcome you into our demo aplication.\nWell lets get into it, you have 3 options of monster to choose from: ")
-    print(f"Up first 'Hert'")
-    print(f"Up second Hamro'")
-    print(f"and last but definitly not least,'Cucombo'\n")
+    print(f"1. 'Hert'")
+    print(f"2. 'Hamro'")
+    print(f"3. 'Cucombo'\n")
  
  
 Monsters = {
@@ -246,9 +267,9 @@ Monsters = {
     4 : Cannabud,
     5 : Maurion,
     6 : Ghopper,
-    7: Mirmina
+    7 : Mirmina
 }
- 
+
 x=""
 Monster_choice = ""
 Monster_name = ""
@@ -257,29 +278,29 @@ First_fight = False
 for _ in range(1):
     while Monster_choice == "":
         openingmsg()
-        Monster_choice = int(input("Please enter the number of monster you would like te receive.\n: "))
-        Monster_name = input(f"hm {Monsters[Monster_choice]}, huh? Not what I expected. But a good choice nonetheless! What would you like to name your new friend?\n:")
- 
-        playermns = Monsters[Monster_choice](Monster_name, Monster_choice)
+        Monster_choice = int(input("Please enter the number of the monster you would like te receive.\n: "))
+        Monster_class = Monsters[Monster_choice]
+        Monster_name = input(f"hmmm interesting, you chose {Monster_class.__name__}, huh? Not what I expected. But a good choice nonetheless! What would you like to name your new friend?\n:")
+
+        playermns = Monster_class(Monster_name, Monster_choice)
         enemynmr = random.randrange(1, 7)
-        enemymnst = Monsters[enemynmr]("X", 2)
-        #attack_names = ", ".join([atk["name"] for atk in playermns.attacks])
- 
- 
-    print(f"Now it’s time to have your first fight! We have chosen a random monster for you to battle. "
-          f"Your opponent will be {enemymnst}!")
- 
+        enemy_class = Monsters[enemynmr]
+        enemymnst = enemy_class(f"{enemy_class.__name__}", 2)
+
+        print(f"Now it’s time to have your first fight! We have chosen a random monster for you to battle. "
+              f"Your opponent will be {enemymnst.name}!")
+
     Battle_loop(playermns,enemymnst,True,x)
     # print(f"What will be youre first atack?")
     # input(f"choose attack:\n{attack_names}")
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
 # Keuze = int(input("Choose your monster. 1: Hert, 2: Hamster"))
- 
+
 # x = input(" Enter your monsters name: ")
 # Monster = Monsters[Keuze](x, Lvl_rand)
 # print(Monster.HP)

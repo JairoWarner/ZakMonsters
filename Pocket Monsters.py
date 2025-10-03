@@ -130,6 +130,11 @@ class Hambo:
         self.EM_DEF = 5
         self.SPD = 6
 
+    attacks = [Bite(), Photosyn(), Tackle(), Spore()]
+
+    def Attacks(self):
+        return
+
 class Cannabud:
 
     def __init__(self,name,level):
