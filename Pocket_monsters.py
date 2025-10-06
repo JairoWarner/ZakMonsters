@@ -64,17 +64,27 @@ def Battle_loop(playermns, enemymnst, turn, x_accuracy):
     battle_hp_enemy = enemymnst.HP
     while battle_hp_player > 0 and battle_hp_enemy > 0:
         if turn:
-            action = input("Choose your attack:")
+            print("\nYour attacks:")
+            for i, attack in enumerate(playermns.attacks):
+                print(f"{i}: {attack['name']}")
+
+            action = input("\nChoose your attack:")
+
             if action.isdigit():
                 act_choice = int(action)
-                print(f"YOU CHOSE ATTACK {act_choice}")
-                print(f"Enemy HP before attack: {battle_hp_enemy}")
+                if act_choice < 0 or act_choice >= len(playermns.attacks):
+                    print("Invalid choice, try again.")
+                    continue
 
-                if playermns.attacks[act_choice].get("type") == "heal":
-                    battle_hp_player += playermns.attacks[act_choice]["base_healing"]
+                chosen_attack = playermns.attacks[act_choice]
+                print(f"YOU CHOSE ATTACK {chosen_attack['name']}")
+
+                if chosen_attack.get("type") == "heal":
+                    battle_hp_player += chosen_attack["base_healing"]
                     print(f"You healed! Your HP is now {battle_hp_player}")
                 else:
-                    battle_hp_enemy -= playermns.attacks[act_choice]["base_damage"]
+                    print(f"Enemy HP before attack: {battle_hp_enemy}")
+                    battle_hp_enemy -= chosen_attack["base_damage"]
                     print(f"Enemy HP after attack: {battle_hp_enemy}")
             else:
                 print("Please only enter a number")
@@ -96,6 +106,7 @@ def Battle_loop(playermns, enemymnst, turn, x_accuracy):
         print("You lost the battle!")
     elif battle_hp_enemy <= 0:
         print("You won the battle!")
+
 
 
 class Hert:
@@ -205,7 +216,7 @@ def Enemy():
 def openingmsg():
     print(f"\nHello! Welcome to the world of Pocket-Monsters™!\nWe are very excited to welcome you into our demo aplication.\nWell lets get into it, you have 3 options of monster to choose from: ")
     print(f"1. 'Hert'")
-    print(f"2. 'Hamro'")
+    print(f"2. 'Hambo'")
     print(f"3. 'Cucombo'\n")
 
 Monsters = {
