@@ -1,0 +1,172 @@
+{
+  "BIG_BUBBLE": {
+    "name": "Big_bubble",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "water",
+    "accuracy": 90
+  },
+ 
+  "BITE": {
+    "name": "Bite",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "normal",
+    "accuracy": 90
+  },
+ 
+  "BLAST": {
+    "name": "Blast",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "fire",
+    "accuracy": 90
+  },
+ 
+  "BUBBLE_MINE_FIELD": {
+    "name": "Bubble_mine_field",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "water",
+    "accuracy": 90
+  },
+ 
+  "Errupt": {
+    "name": "Erupt",
+    "type": "attack",
+    "base_damage": 11,
+    "base_healing": 0,
+    "element": "fire",
+    "accuracy": 90
+  },
+ 
+  "Gwalk": {
+    "name": "Gwalk",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "grass",
+    "accuracy": 90
+  },
+ 
+  "GRASS_BOMB": {
+    "name": "Grass_bomb",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "grass",
+    "accuracy": 90
+  },
+ 
+  "HEAT_UP": {
+    "name": "Heat_Up",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "fire",
+    "accuracy": 90
+  },
+ 
+  "INFERNO_WHIP": {
+    "name": "Inferno_seed",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "fire",
+    "accuracy": 90
+  },
+ 
+  "POISION_PLANT": {
+    "name": "Poison_Plant",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "grass",
+    "accuracy": 90
+  },
+ 
+  "Roll_Out": {
+    "name": "Roll_out",
+    "type": "attack",
+    "base_damage": 9,
+    "base_healing": 0,
+    "element": "normal",
+    "accuracy": 90
+  },
+ 
+  "Sing": {
+    "name": "Sing",
+    "type": "sleep",
+    "base_damage": 0,
+    "base_healing": 0,
+    "element": "normal",
+    "accuracy": 75
+  },
+ 
+  "SPORE": {
+    "name": "Spore",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "grass",
+    "accuracy": 90
+  },
+ 
+  "Squirt": {
+    "name": "Squirt",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "water",
+    "accuracy": 90
+  },
+ 
+  "photosynthesis": {
+    "name": "Photosyn",
+    "type": "heal",
+    "base_damage": 0,
+    "base_healing": 7,
+    "element": "normal",
+    "accuracy": 90
+  },
+ 
+  "TACKLE": {
+    "name": "Tackle",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "normal",
+    "accuracy": 90
+  },
+ 
+  "Tail_Whip": {
+    "name": "Tail_Whip",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "normal",
+    "accuracy": 90
+  },
+ 
+  "VINE_WHIP": {
+    "name": "Vine_Whip",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "grass",
+    "accuracy": 90
+  },
+ 
+  "VLAM_IN_DE_PAN": {
+    "name": "Vlam_in_de_pan",
+    "type": "attack",
+    "base_damage": 7,
+    "base_healing": 0,
+    "element": "fire",
+    "accuracy": 90
+  }
+}
